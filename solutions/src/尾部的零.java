@@ -15,7 +15,7 @@ public class 尾部的零 {
      * 挑战
      * O(logN)的时间复杂度
      * <p>
-     * tag 数学
+     * tag:数学
      */
     public long trailingZeros(long n) {
         // write your code here, try to do it without arithmetic operators.
