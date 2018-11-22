@@ -22,6 +22,7 @@ public class 查找数组中没有出现的所有数字 {
      * <p>
      * 输出:
      * [5,6]
+     * 思路：在数组中下标从0开始，本题下标范围为0-7，而数组元素的值范围为1-8，所以想着如果能把数组元素的值与下标联系起来。通过遍历数组，将每个数组元素设为负值，在遍历的整个过程中，如果有重复元素的话，那么数组肯定有正值，而正值的下标加1就是所没有出现的数字。
      */
 
     public static List<Integer> findDisappearedNumbers(int[] nums) {
@@ -32,12 +33,10 @@ public class 查找数组中没有出现的所有数字 {
             return result;
         }
         for (int i = 0; i < nums.length; i++) {
-            if ((nums[i] - 1) != -1) {
-                nums[nums[i] - 1] = 0;
-            }
+            nums[Math.abs(nums[i])- 1] = -Math.abs(nums[Math.abs(nums[i])- 1]);
         }
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
+            if (nums[i] > 0) {
                 result.add(i + 1);
             }
         }
@@ -45,7 +44,7 @@ public class 查找数组中没有出现的所有数字 {
     }
 
     public static void main(String[] args) {
-        int[] a = new int[]{4,3,2,7,8,3,2,1};
-        findDisappearedNumbers(a);
+        int[] a = new int[]{10, 2, 5, 10, 9, 1, 1, 4, 3, 7};
+        findDisappearedNumbers(a).forEach(integer -> System.out.println(integer));
     }
 }
