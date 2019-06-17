@@ -106,17 +106,13 @@ public class 链表求和 {
         return oddList;
 
     }
-}
+    class ListNode {
+        int val;
+        ListNode next;
 
-/**
- * Definition for ListNode
- */
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
     }
 }
