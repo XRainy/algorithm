@@ -1,1 +1,1 @@
-Java Solutions to problems on LintCode/LeetCode
+Java Solutions to problems on LeetCode
