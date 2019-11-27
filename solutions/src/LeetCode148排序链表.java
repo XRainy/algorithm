@@ -19,6 +19,41 @@
  */
 public class LeetCode148排序链表 {
     public ListNode sortList(ListNode head) {
-        return null;
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode temp = slow;
+        slow = slow.next;
+        temp.next = null;
+        return merge(sortList(head), sortList(slow));
+    }
+
+
+    public ListNode merge(ListNode a, ListNode b) {
+        ListNode temp = new ListNode(0);
+        ListNode res = temp;
+        while (a != null && b != null) {
+            if (a.val <= b.val) {
+                temp.next = a;
+                a = a.next;
+            } else {
+                temp.next = b;
+                b = b.next;
+            }
+            temp = temp.next;
+        }
+        if (a == null) {
+            temp.next = b;
+        }
+        if (b == null) {
+            temp.next = a;
+        }
+        return res.next;
     }
 }
