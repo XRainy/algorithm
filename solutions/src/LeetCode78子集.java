@@ -31,7 +31,8 @@ import java.util.List;
 public class LeetCode78子集 {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        for (int i = 0; i < 1 << nums.length; i++) {
+        int temp = 1 << nums.length;
+        for (int i = 0; i < temp; i++) {
             List<Integer> list = new ArrayList<>();
             for (int j = 0; j < nums.length; j++) {
                 if (((i >> j) & 1) == 1) {
@@ -42,21 +43,31 @@ public class LeetCode78子集 {
         }
         return result;
     }
+
     /**
      * 循环枚举
      */
     public static List<List<Integer>> enumerate(int[] nums) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        res.add(new ArrayList<Integer>());
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(new ArrayList<>());
         for (Integer n : nums) {
             int size = res.size();
             for (int i = 0; i < size; i++) {
-                List<Integer> newSub = new ArrayList<Integer>(res.get(i));
+                List<Integer> newSub = new ArrayList<>(res.get(i));
                 newSub.add(n);
                 res.add(newSub);
             }
         }
         return res;
+    }
+
+    public void helper(List<List<Integer>> res, List<Integer> list, int[] nums, int index) {
+        res.add(new ArrayList<>(list));
+        for (int i = index; i < nums.length; i++) {
+            list.add(nums[i]);
+            helper(res, list, nums, i + 1);
+            list.remove(list.size() - 1);
+        }
     }
 
 
