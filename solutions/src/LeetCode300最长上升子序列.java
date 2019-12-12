@@ -37,7 +37,6 @@ public class LeetCode300最长上升子序列 {
             dps[i] = maxVal + 1;
             maxAns = Math.max(maxAns, dps[i]);
         }
-
         return maxAns;
     }
 
