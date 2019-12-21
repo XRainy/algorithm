@@ -18,30 +18,17 @@
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class LeetCode309最佳买卖股票时机含冷冻期 {
-    public int maxProfit(int[] prices) {
-        if (prices == null) {
-            return 0;
+    int maxProfit(int[] prices) {
+        int n = prices.length;
+        int dp_i_0 = 0;
+        int dp_i_1 = Integer.MIN_VALUE;
+        int dp_pre_0 = 0; // 代表 dp[i-2][0]
+        for (int i = 0; i < n; i++) {
+            int temp = dp_i_0;
+            dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
+            dp_i_1 = Math.max(dp_i_1, dp_pre_0 - prices[i]);
+            dp_pre_0 = temp;
         }
-        int[] dp = new int[prices.length];
-        dp[0] = 0;
-        int pre = 0;
-        int result = 0;
-        for (int i = 0; i < prices.length - 1; i++) {
-            pre = maxProfit(prices, 0, i);
-            if (prices[i + 2] < prices[i]) {
-
-            }
-        }
-        return dp[prices.length];
-    }
-
-    public int maxProfit(int[] prices, int start, int end) {
-        int res = 0;
-        int min = prices[start];
-        for (int i = start; i <= end; i++) {
-            res = Math.max(res, prices[i] - min);
-            min = Math.min(min, prices[i]);
-        }
-        return res;
+        return dp_i_0;
     }
 }
