@@ -92,10 +92,12 @@ public class 排序 {
         while (i < leftArr.length && j < rightArr.length) {
             newNum[m++] = leftArr[i] < rightArr[j] ? leftArr[i++] : rightArr[j++];
         }
-        while (i < leftArr.length)
+        while (i < leftArr.length) {
             newNum[m++] = leftArr[i++];
-        while (j < rightArr.length)
+        }
+        while (j < rightArr.length) {
             newNum[m++] = rightArr[j++];
+        }
         return newNum;
     }
 
