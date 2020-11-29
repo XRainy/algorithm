@@ -102,8 +102,8 @@ public class 排序 {
     }
 
     //堆排序
-    public int[] sortArray5(int[] nums) {
-        buildMaxHeap(nums);
+    public static int[] sortArray5(int[] nums) {
+        buildMaxHeap(nums, nums.length);
 
         for (int i = nums.length - 1; i > 0; i--) {
             swap(nums, 0, i);
@@ -113,20 +113,20 @@ public class 排序 {
     }
 
 
-    public void buildMaxHeap(int nums[]) {
-        for (int i = parent(nums.length - 1); i >= 0; i--) {
+    public static void buildMaxHeap(int nums[], int end) {
+        for (int i = parent(end - 1); i >= 0; i--) {
             adjustHeap(nums, i, nums.length);
         }
     }
 
-    public void adjustHeap(int[] nums, int i, int end) {
+    public static void adjustHeap(int[] nums, int i, int end) {
         int largest = i;
         int left = leftChild(i);
         int right = rightChild(i);
         if (left < end && nums[largest] < nums[left]) {
             largest = left;
         }
-        if (left < end && nums[largest] < nums[right]) {
+        if (right < end && nums[largest] < nums[right]) {
             largest = right;
         }
         if (largest != i) {
@@ -135,32 +135,57 @@ public class 排序 {
         }
     }
 
-    public int parent(int i) {
+    public static int parent(int i) {
         return (i - 1) / 2;
     }
 
-    protected int leftChild(int i) {
+    protected static int leftChild(int i) {
         return 2 * i + 1;
     }
 
-    protected int rightChild(int i) {
+    protected static int rightChild(int i) {
         return 2 * i + 2;
     }
 
 
     public static void main(String[] args) {
         int[] nums = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 10};
-        int[] newNums = mergeSort(nums, 0, nums.length - 1);
+        int[] newNums = sortArray5(nums);
         for (int x : newNums) {
             System.out.println(x);
         }
     }
 
     //
-    public void swap(int[] nums, int i, int j) {
+    public static void swap(int[] nums, int i, int j) {
         int temp = nums[j];
         nums[j] = nums[i];
         nums[i] = temp;
+    }
+
+
+    public void maopao(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length - i - 1; j++) {
+                if (nums[j] < nums[j + 1]) {
+                    swap(nums, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public void xuanze(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i; j < nums.length; j++) {
+                if (nums[j] > nums[i]) {
+                    swap(nums, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public void quick(int[] nums, int start, int end) {
+
     }
 
 

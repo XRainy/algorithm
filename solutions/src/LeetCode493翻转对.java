@@ -62,10 +62,39 @@ public class LeetCode493翻转对 {
         return lc + rc + cnt;
     }
 
-    public static void main(String[] args) {
-        int[] nums = new int[]{1, 5, 4, 3, 2, 1, 3, 6, 7, 1};
-        reversePairs(nums);
+//    public static void main(String[] args) {
+//        int[] nums = new int[]{1, 5, 4, 3, 2, 1, 3, 6, 7, 1};
+//        reversePairs(nums);
+//
+//    }
 
+    public static void main(String[] args) {
+        int[] input = new int[]{1, 2, 3, 4, 5, 6, 7};
+        int result = getSum(input, 9);
+        System.out.println(result);
+    }
+
+    public static int getSum(int[] input, int m) {
+        if (input == null || input.length < 2) {
+            return 0;
+        }
+        int left = 0;
+        int right = input.length - 1;
+        int result = 0;
+        while (left < right) {
+            int temp = m - input[left];
+            if (temp > input[right]) {
+                left++;
+            } else if (temp < input[right]) {
+                right--;
+            } else {
+                left++;
+                right--;
+                result++;
+            }
+
+        }
+        return result;
     }
 
 }
